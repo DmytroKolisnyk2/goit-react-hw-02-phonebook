@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
 import Filter from "./components/Filter/Filter";
-import './styles/App.scss';
+import "./styles/App.scss";
+import { info } from "@pnotify/core";
+import "@pnotify/core/dist/PNotify.css";
+import "@pnotify/core/dist/BrightTheme.css";
+
 class App extends Component {
   state = {
     contacts: [
@@ -22,8 +26,9 @@ class App extends Component {
 
   addContact = (contactData) => {
     this.setState((prevState) => ({
-      contacts: [...prevState.contacts, contactData],
+      contacts: [contactData, ...prevState.contacts],
     }));
+    info({ text: `Contact successfully added`, delay: 700 });
   };
 
   filterOnChange = ({ target }) => {
@@ -40,7 +45,7 @@ class App extends Component {
       <>
         <div className="phonebook__wrapper">
           <div className="form-wrapper">
-            <h1 className='headline'>Phonebook</h1>
+            <h1 className="headline">Phonebook</h1>
 
             <h2>Add new contact</h2>
             <ContactForm onSubmitHandler={this.addContact} contacts={this.state.contacts} />
