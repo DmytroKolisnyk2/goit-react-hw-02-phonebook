@@ -1,10 +1,14 @@
-@import 'styles/variables.scss';
+@import "styles/variables.scss";
 
 .form {
 }
 .form__input {
+  @extend %input;
 }
 .form__submit {
+  display: block;
+  margin: 25px auto 0;
+  @extend %btn;
 }
 .form__title {
 }

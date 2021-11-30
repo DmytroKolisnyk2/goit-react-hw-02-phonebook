@@ -1,5 +1,6 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
+import './Filter.scss';
 
 const filterId = nanoid();
 
