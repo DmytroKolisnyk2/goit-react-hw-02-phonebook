@@ -1,7 +1,8 @@
 import React from "react";
 import "./ContactItem.scss";
+import PropTypes from "prop-types";
 
-export default function ContactItem({ name, number,deleteContact}) {
+export default function ContactItem({ name, number, deleteContact }) {
   return (
     <li className="list__item">
       <p className="list__text">
@@ -13,3 +14,9 @@ export default function ContactItem({ name, number,deleteContact}) {
     </li>
   );
 }
+
+ContactItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
+  deleteContact: PropTypes.func.isRequired,
+};

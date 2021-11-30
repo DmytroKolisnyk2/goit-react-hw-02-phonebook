@@ -1,6 +1,7 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
 import './Filter.scss';
+import PropTypes from 'prop-types';
 
 const filterId = nanoid();
 
@@ -13,4 +14,9 @@ export default function Filter({onChange,value}) {
       </label>
     </div>
   );
+}
+
+Filter.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
 }

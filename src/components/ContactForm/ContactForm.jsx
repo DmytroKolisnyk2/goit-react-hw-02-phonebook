@@ -4,6 +4,7 @@ import { info } from "@pnotify/core";
 import "@pnotify/core/dist/PNotify.css";
 import "@pnotify/core/dist/BrightTheme.css";
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 const INITIAL_STATE = {
   name: "",
@@ -29,7 +30,6 @@ class ContactForm extends Component {
     event.preventDefault();
     const { contacts } = this.props;
     if (!contacts.find((item) => item.name === this.state.name)) {
-      console.log(contacts.find((item) => item.name === this.state.name));
       const contactData = { name: this.state.name, number: this.state.number, id: nanoid() };
       this.props.onSubmitHandler(contactData);
       this.reset();
@@ -78,3 +78,8 @@ class ContactForm extends Component {
 }
 
 export default ContactForm;
+
+ContactForm.propTypes = {
+  contacts: PropTypes.array.isRequired,
+  onSubmitHandler: PropTypes.func.isRequired,
+};
