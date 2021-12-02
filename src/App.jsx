@@ -6,6 +6,7 @@ import "./styles/App.scss";
 import { info } from "@pnotify/core";
 import "@pnotify/core/dist/PNotify.css";
 import "@pnotify/core/dist/BrightTheme.css";
+import Message from './components/Message/Message';
 
 class App extends Component {
   state = {
@@ -53,6 +54,10 @@ class App extends Component {
           <div className="list-wrapper">
             <h2>Contacts</h2>
             <Filter value={this.state.filter} onChange={this.filterOnChange} />
+
+            {/* Додаткова опція)) */}
+            {this.state.filter && <Message />}
+            
             <ContactList deleteContact={this.deleteContact} contacts={visibleContacts} />
           </div>
         </div>
