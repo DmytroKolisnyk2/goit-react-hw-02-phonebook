@@ -28,17 +28,20 @@ class ContactForm extends Component {
 
   onSubmitHandler = (event) => {
     event.preventDefault();
-    const { contacts } = this.props;
-    if (!contacts.find((item) => item.name === this.state.name)) {
-      const contactData = { name: this.state.name, number: this.state.number, id: nanoid() };
-      this.props.onSubmitHandler(contactData);
+    const { name, number } = this.state;
+    const { contacts, onSubmitHandler } = this.props;
+    if (!contacts.find((item) => item.name === name)) {
+      const contactData = { name: name, number: number, id: nanoid() };
+      onSubmitHandler(contactData);
       this.reset();
     } else {
-      info({ text: `${this.state.name} is already in contacts.`, delay: 700 });
+      info({ text: `${name} is already in contacts.`, delay: 700 });
     }
   };
 
   render() {
+    const { name, number } = this.state;
+
     return (
       <form className="form" onSubmit={this.onSubmitHandler}>
         <label className="form__title" htmlFor={this.nameId}>
@@ -51,7 +54,7 @@ class ContactForm extends Component {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
             id={this.nameId}
-            value={this.state.name}
+            value={name}
             onChange={this.onInputHandler}
           />
         </label>
@@ -65,7 +68,7 @@ class ContactForm extends Component {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
             id={this.numberId}
-            value={this.state.number}
+            value={number}
             onChange={this.onInputHandler}
           />
         </label>
